@@ -67,7 +67,8 @@ For details about individual scripts, see **`ScriptsReadme.txt`** inside Project
 ### Build & Launch
 ```bash
 ./build.sh
-./launcher.sh
+./launcher.sh```
+
 ### Cleanup After Execution Ends
-./cleanup.sh
-./cleanFiles.sh
+```./cleanup.sh
+./cleanFiles.sh```
