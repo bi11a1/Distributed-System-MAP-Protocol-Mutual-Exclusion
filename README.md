@@ -31,7 +31,7 @@ The project explores core concepts of distributed systems, including message pas
 
 ---
 
-#### Part 3: Vector Clock Verification
+#### Part 3: Fidge/Mattern vector clocks
 - Implements **Fidge/Mattern vector clocks** for logical time tracking.
 - Vector timestamps are carried only by **application messages**.
 - Each node records its **local vector clock** during a snapshot.
