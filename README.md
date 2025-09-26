@@ -1,20 +1,15 @@
-# Distributed-System-MAP-Protocol-Mutual-Exclusion
+# Advanced Operating Systems Projects
 
-## Project - 1
+# Project 1
+This repository contains my course project for **Advanced Operating Systems**, which implements distributed systems protocols across multiple nodes. 
 
-# Advanced Operating Systems Project
+## Project Overview
 
-This repository contains my course project for **Advanced Operating Systems**, which implements distributed systems protocols across multiple nodes. The project is divided into four major parts, each building on the previous one.
-
----
-
-## 📌 Project Overview
-
-The project explores core concepts of distributed systems, including message passing, consistent global snapshots, logical time, and system termination detection. Nodes are simulated using sockets to represent bidirectional FIFO channels, and various protocols are implemented to manage distributed coordination.
+The project explores core concepts of distributed systems, including message passing, consistent global snapshots, logical time, and system termination detection. Nodes are simulated using sockets to represent bidirectional FIFO channels, and various protocols are implemented to manage distributed coordination. The project is divided into four major parts, each building on the previous one.
 
 ---
 
-## 🚀 Features
+## Features
 
 ### Part 1: MAP Protocol (Message Passing)
 - Implements a distributed system of `n` nodes (`0 ... n-1`) arranged in a configurable topology.
@@ -25,6 +20,7 @@ The project explores core concepts of distributed systems, including message pas
 - Communication:
   - All channels are **bidirectional**, **reliable**, and **FIFO**.
   - Channels are built using **TCP/SCTP sockets** that remain open until the program terminates.
+- Implementation detail: Node `0` is always active at the start; the rest of the nodes start active with 50% probability.
 
 ---
 
@@ -34,48 +30,44 @@ The project explores core concepts of distributed systems, including message pas
 - Termination detection:
   - The MAP protocol is terminated when **all nodes are passive** and **all channels are empty**.
   - Snapshot results are converge-cast to node `0` over a spanning tree.
+- Verification of global consistency is done by checking the recorded local states.
 
 ---
 
 ### Part 3: Vector Clock Verification
 - Implements **Fidge/Mattern vector clocks** for logical time tracking.
 - Vector timestamps are carried only by **application messages**.
-- During snapshot collection, vector timestamps are used at node `0` to verify **consistency** of the snapshot.
+- Each node records its **local vector clock** during a snapshot.
+- At node `0`, vector timestamps are used to verify snapshot **consistency**.
 
 ---
 
 ### Part 4: System Termination
-- Designs and implements a protocol to **bring all nodes to a halt** once node `0` detects MAP protocol termination.
-- Ensures clean shutdown of all sockets and processes.
+- When all nodes are passive and no in-transit messages remain, the system is considered terminated.
+- A custom shutdown protocol halts all nodes and closes all ports and streams gracefully.
 
 ---
 
-## ⚙️ How It Works
+## ⚙️ Implementation Notes
+- **Language:** Java  
+- **Entry point:** `Main.java`  
+- Two parallel threads are used:
+  - One for running the MAP protocol.
+  - One for managing snapshots.  
+- Code is well-commented to improve readability.  
+- Default configuration file: `config.txt`  
+  - To use a different file, update the file name and path in the scripts.
 
-1. **Configuration File**  
-   - Provides system parameters such as:
-     - Number of nodes
-     - Topology (neighbors)
-     - MAP protocol parameters (`minPerActive`, `maxPerActive`, `minSendDelay`, `maxNumber`).
-   - Used by each node at startup to initialize connections.
-
-2. **Execution Flow**  
-   - Nodes establish bidirectional FIFO channels.
-   - MAP protocol runs with message exchanges until global termination is detected.
-   - Snapshot protocol is used to monitor state and verify termination.
-   - Vector clocks validate consistency.
-   - Shutdown protocol halts all nodes gracefully.
+For details about individual scripts, see **`ScriptsReadme.txt`** inside Project - 1.
 
 ---
 
-## 🛠️ Technologies Used
-- **Programming Language:** (Specify here, e.g., Java, C++, Python)
-- **Networking:** TCP/SCTP sockets
-- **Synchronization & Coordination:**  
-  - MAP protocol  
-  - Chandy–Lamport snapshot protocol  
-  - Fidge/Mattern vector clocks  
+## ▶️ Running the Project
 
----
-
-## 📂 Project Structure
+### Build & Launch
+```bash
+./build.sh
+./launcher.sh
+### Cleanup After Execution Ends
+./cleanup.sh
+./cleanFiles.sh
