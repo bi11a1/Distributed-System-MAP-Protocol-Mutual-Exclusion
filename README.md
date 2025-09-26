@@ -111,7 +111,7 @@ The implementation is structured into two interacting modules per process:
 - Default configuration file: `config.txt`  
   - If a different config file is used, update the filename/path in the scripts.  
 - The program is well-commented to improve readability.
-- 
+
 ---
 
 ### Testing Mechanism
