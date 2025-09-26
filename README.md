@@ -1,17 +1,17 @@
 # Advanced Operating Systems Projects
 
-# Project 1
+## Project 1
 This repository contains my course project for **Advanced Operating Systems**, which implements distributed systems protocols across multiple nodes. 
 
-## Project Overview
+### Project Overview
 
 The project explores core concepts of distributed systems, including message passing, consistent global snapshots, logical time, and system termination detection. Nodes are simulated using sockets to represent bidirectional FIFO channels, and various protocols are implemented to manage distributed coordination. The project is divided into four major parts, each building on the previous one.
 
 ---
 
-## Features
+### Features
 
-### Part 1: MAP Protocol (Message Passing)
+#### Part 1: MAP Protocol (Message Passing)
 - Implements a distributed system of `n` nodes (`0 ... n-1`) arranged in a configurable topology.
 - Each node can be **active** or **passive**:
   - **Active nodes** send between `minPerActive` and `maxPerActive` messages before becoming passive.
@@ -24,7 +24,7 @@ The project explores core concepts of distributed systems, including message pas
 
 ---
 
-### Part 2: Chandy–Lamport Global Snapshot Protocol
+#### Part 2: Chandy–Lamport Global Snapshot Protocol
 - Implements the **Chandy–Lamport algorithm** to record a consistent global snapshot of the system state.
 - Node `0` initiates the snapshot process.
 - Termination detection:
@@ -34,7 +34,7 @@ The project explores core concepts of distributed systems, including message pas
 
 ---
 
-### Part 3: Vector Clock Verification
+#### Part 3: Vector Clock Verification
 - Implements **Fidge/Mattern vector clocks** for logical time tracking.
 - Vector timestamps are carried only by **application messages**.
 - Each node records its **local vector clock** during a snapshot.
@@ -42,13 +42,13 @@ The project explores core concepts of distributed systems, including message pas
 
 ---
 
-### Part 4: System Termination
+#### Part 4: System Termination
 - When all nodes are passive and no in-transit messages remain, the system is considered terminated.
 - A custom shutdown protocol halts all nodes and closes all ports and streams gracefully.
 
 ---
 
-## ⚙️ Implementation Notes
+### Implementation Notes
 - **Language:** Java  
 - **Entry point:** `Main.java`  
 - Two parallel threads are used:
@@ -62,13 +62,15 @@ For details about individual scripts, see **`ScriptsReadme.txt`** inside Project
 
 ---
 
-## ▶️ Running the Project
+### Running the Project
 
-### Build & Launch
+#### Build & Launch
 ```bash
 ./build.sh
-./launcher.sh```
+./launcher.sh
+```
 
-### Cleanup After Execution Ends
+#### Cleanup After Execution Ends
 ```./cleanup.sh
-./cleanFiles.sh```
+./cleanFiles.sh
+```
