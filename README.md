@@ -1,15 +1,12 @@
 # Advanced Operating Systems Projects
 
 ## Project 1
-This repository contains my course project for **Advanced Operating Systems**, which implements distributed systems protocols across multiple nodes. 
 
 ### Project Overview
 
 The project explores core concepts of distributed systems, including message passing, consistent global snapshots, logical time, and system termination detection. Nodes are simulated using sockets to represent bidirectional FIFO channels, and various protocols are implemented to manage distributed coordination. The project is divided into four major parts, each building on the previous one.
 
 ---
-
-### Features
 
 #### Part 1: MAP Protocol (Message Passing)
 - Implements a distributed system of `n` nodes (`0 ... n-1`) arranged in a configurable topology.
