@@ -39,7 +39,7 @@ The project explores core concepts of distributed systems, including message pas
 
 ---
 
-#### Part 4: System Termination
+#### Part 4: Termination Detection
 - When all nodes are passive and no in-transit messages remain, the system is considered terminated.
 - A custom shutdown protocol halts all nodes and closes all ports and streams gracefully.
 
