@@ -72,3 +72,86 @@ For details about individual scripts, see **`ScriptsReadme.txt`** inside Project
 ./cleanup.sh
 ./cleanFiles.sh
 ```
+
+## Project 2 (Mutual Exclusion in Distributed Systems)
+
+---
+
+### Project Overview
+
+The project implements a mutual exclusion service based on **Roucairol and Carvalho’s algorithm**. The service provides mutual exclusion among `n` distributed processes, ensuring that **at most one process** is in its critical section at any given time. It uses two key API calls:
+
+- **`cs-enter()`**  
+  Blocks until the invoking process is granted permission to enter its critical section.  
+
+- **`cs-leave()`**  
+  Notifies the service that the invoking process has finished executing its critical section.  
+
+The implementation is structured into two interacting modules per process:
+
+1. **Application Module**  
+   - Generates requests to enter critical sections.  
+   - Executes critical sections after permission is granted.  
+   - Modeled using two parameters:  
+     - `d`: *inter-request delay* (time between leaving one CS and requesting the next).  
+     - `c`: *CS execution time*.  
+   - Both `d` and `c` are drawn from **exponential distributions**.
+
+2. **Mutual Exclusion Service Module**  
+   - Implements Roucairol and Carvalho’s algorithm.  
+   - Coordinates distributed processes to ensure mutual exclusion using request, reply, and release messages.  
+   - Handles all message-passing logic over reliable FIFO channels.
+
+---
+
+### Implementation Notes
+
+- **Language:** Java  
+- **Entry point:** `Main.java`  
+- Default configuration file: `config.txt`  
+  - If a different config file is used, update the filename/path in the scripts.  
+- The program is well-commented to improve readability.
+- 
+---
+
+### Testing Mechanism
+
+A **testing mechanism** using vector clock verifies correctness:  
+- Ensures that **at most one process** is in its critical section at any time.  
+- Detects violations automatically (no manual log inspection required).  
+
+---
+
+### Experimental Evaluation
+
+The project includes experiments to evaluate performance across different system parameters:
+
+- **Parameters Varied:**  
+  - Number of processes (`n`)  
+  - Inter-request delay (`d`)  
+  - CS execution time (`c`)  
+
+- **Metrics Measured:**  
+  - **Message complexity** (number of messages per CS execution)  
+  - **Response time** (delay between request and CS entry)  
+  - **System throughput** (rate of CS completions)  
+
+- **Results:**  
+  - Multiple runs are averaged for each configuration.  
+  - Results are plotted as graphs.  
+  - **Raw data of experiments** is provided in **`Experimental Data.xlsx`**.  
+
+---
+
+### Running the Project
+
+#### Build & Launch
+```
+./build.sh
+./launcher.sh
+```
+#### Cleanup After Execution Ends
+```
+./cleanup.sh
+./cleanFiles.sh
+```
