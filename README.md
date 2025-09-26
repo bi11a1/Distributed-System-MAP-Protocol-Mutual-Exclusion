@@ -1,6 +1,6 @@
 # Advanced Operating Systems Projects
 
-## Project 1
+## Project 1 (Message Passing, Consistent Global Snapshots, Termination Detection)
 
 ### Project Overview
 
