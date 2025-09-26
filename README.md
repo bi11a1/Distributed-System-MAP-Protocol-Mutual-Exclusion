@@ -55,7 +55,7 @@ The project explores core concepts of distributed systems, including message pas
 - Default configuration file: `config.txt`  
   - To use a different file, update the file name and path in the scripts.
 
-For details about individual scripts, see **`ScriptsReadme.txt`** inside Project - 1.
+For details about individual scripts, see **`ScriptsReadme.txt`** inside Project 1.
 
 ---
 
